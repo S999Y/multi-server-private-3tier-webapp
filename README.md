@@ -54,21 +54,21 @@ The project is purpose-built to demonstrate **multi-server three-tier applicatio
 
 ```
                         ┌──────────────────────────────────────┐
-                        │         Internet (Users)              │
+                        │         Internet (Users)             │
                         └──────────────┬───────────────────────┘
                                        │ HTTPS :443 / HTTP :80
                         ┌──────────────▼───────────────────────┐
-                        │   Route53 — bmi.ostaddevops.click     │
-                        │     (A alias record → ALB DNS)        │
+                        │   Route53 — bmi.ostaddevops.click    │
+                        │     (A alias record → ALB DNS)       │
                         └──────────────┬───────────────────────┘
                                        │
                         ┌──────────────▼───────────────────────┐
                         │   Application Load Balancer (ALB)    │
-                        │   internet-facing | ACM TLS cert      │
+                        │   internet-facing | ACM TLS cert     │
                         │   Public Subnet 1a + Public Subnet 1b│
-                        │                                       │
+                        │                                      │
                         │  HTTP :80  → 301 redirect to HTTPS   │
-                        │  HTTPS :443 listener rules:           │
+                        │  HTTPS :443 listener rules:          │
                         │    /api/*   → Backend TG  :3000      │
                         │    /health  → Backend TG  :3000      │
                         │    /*       → Frontend TG :80        │
@@ -76,12 +76,12 @@ The project is purpose-built to demonstrate **multi-server three-tier applicatio
                                  │              │
                    HTTP :80      │              │  HTTP :3000
               ┌──────────────────▼─┐  ┌─────────▼──────────────────┐
-              │    Frontend EC2    │  │       Backend EC2           │
-              │    Nginx :80       │  │   Node.js + PM2 :3000       │
-              │    React SPA       │  │   Express REST API           │
-              │    10.0.2.x        │  │   10.0.2.y                  │
-              │  (Private Subnet)  │  │  (Private Subnet)           │
-              └────────────────────┘  └────────────┬────────────────┘
+              │    Frontend EC2    │  │       Backend EC2          │
+              │    Nginx :80       │  │   Node.js + PM2 :3000      │
+              │    React SPA       │  │   Express REST API         │
+              │    10.0.2.x        │  │   10.0.2.y                 │
+              │  (Private Subnet)  │  │  (Private Subnet)          │
+              └────────────────────┘  └────────────┬───────────────┘
                                                    │ TCP :5432
                                       ┌────────────▼────────────────┐
                                       │        DB EC2               │
